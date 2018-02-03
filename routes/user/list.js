@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
       res.status(500).send('database connection failed');
       return false
     }
-    let query = 'SELECT * from city'
+    let query = 'SELECT * from users'
     try {
       connection.query(query, function (err, rows) {
         if (err) {

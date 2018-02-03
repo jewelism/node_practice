@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
       res.status(500).send('database connection failed');
       return false
     }
-    let query = 'SELECT count(*) as count1 from city'
+    let query = 'SELECT count(*) as count1 from users'
     try {
       connection.query(query, function (err, rows) {
         if (err) {
