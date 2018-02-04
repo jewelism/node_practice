@@ -3,6 +3,7 @@ const Block = require('./Block')
 class Blockchain {
   constructor() {
     this.chain = [this.createGenesisBlock()];
+    this.difficulty = 2;
   }
 
   createGenesisBlock() {
@@ -15,8 +16,8 @@ class Blockchain {
 
   addBlock(newBlock) {
     newBlock.previousHash = this.getLatestBlock().hash;
-    newBlock.hash = newBlock.calculateHash();
-    this.chain.push(newBlock);
+    newBlock.mineBlock(this.difficulty);
+    this.chain.push(newBlock)
   }
 
   isChainValid() {

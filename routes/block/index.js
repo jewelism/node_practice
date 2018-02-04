@@ -9,7 +9,11 @@ const ResponseBody = require('../../models/ResponseBody')
 /* GET users listing. */
 router.get('/', (req, res, next) => {
   let bc = new Blockchain()
+
+  console.log('Mining block 1')
   bc.addBlock(new Block(1, "20/07/2017", { amount: 4 }))
+
+  console.log('Mining block 2')
   bc.addBlock(new Block(2, "20/07/2017", { amount: 8 }))
 
   ResponseBody.success = true
