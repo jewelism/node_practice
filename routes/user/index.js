@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pool = require('../../config/db')
-var result = require('../../constants').result
+const ResponseBody = require('../../models/ResponseBody')
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
@@ -16,12 +16,12 @@ router.get('/', (req, res, next) => {
         if (err) {
           console.log('an error')
 
-          res.status(500).send(result);
+          res.status(500).send(ResponseBody);
           return false
         }
-        result.success = true
-        result.data = rows
-        res.status(200).send(result)
+        ResponseBody.success = true
+        ResponseBody.data = rows
+        res.status(200).send(ResponseBody)
       })
     } finally {
       connection.release()
