@@ -10,18 +10,17 @@ router.get('/', (req, res, next) => {
       res.status(500).send('database connection failed');
       return false
     }
-    let query = 'SELECT count(*) as count1 from users'
+
+    let query = "SELECT count(*) as total_count from users"
     try {
       connection.query(query, function (err, rows) {
         if (err) {
           console.log('an error')
-
-          res.status(500).send(ResponseBody);
+          res.status(500).send(new ResponseBody())
           return false
         }
-        ResponseBody.success = true
-        ResponseBody.data = rows
-        res.status(200).send(ResponseBody)
+
+        res.status(200).send(new ResponseBody(true, rows))
       })
     } finally {
       connection.release()

@@ -16,14 +16,12 @@ router.get('/', (req, res, next) => {
   console.log('Mining block 2')
   bc.addBlock(new Block(2, "20/07/2017", { amount: 8 }))
 
-  ResponseBody.success = true
-  ResponseBody.data = []
-  ResponseBody.data.push('Blockchain valid? ' + bc.isChainValid())
-  console.log('Blockchain valid? ' + bc.isChainValid())
+  let data = []
+  data.push('Blockchain valid? ' + bc.isChainValid())
   bc.chain[1].data = { amount: 100 }
-  ResponseBody.data.push('Blockchain valid? ' + bc.isChainValid())
-  console.log("Blockchain valid? " + bc.isChainValid())
-  res.status(200).send(ResponseBody)
+  data.push('Blockchain valid? ' + bc.isChainValid())
+
+  res.status(200).send(new ResponseBody(true, data))
 });
 
 module.exports = router;

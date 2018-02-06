@@ -2,21 +2,21 @@ const Block = require('./Block')
 
 class Blockchain {
   constructor() {
-    this.chain = [this.createGenesisBlock()];
-    this.difficulty = 2;
+    this.chain = [this.createGenesisBlock()]
+    this.difficulty = 2
   }
 
   createGenesisBlock() {
-    return new Block(0, "01/01/2017", "Genesis block", "0");
+    return new Block(0, "01/01/2017", "Genesis block", "0")
   }
 
   getLatestBlock() {
-    return this.chain[this.chain.length - 1];
+    return this.chain[this.chain.length - 1]
   }
 
   addBlock(newBlock) {
-    newBlock.previousHash = this.getLatestBlock().hash;
-    newBlock.mineBlock(this.difficulty);
+    newBlock.previousHash = this.getLatestBlock().hash
+    newBlock.mineBlock(this.difficulty)
     this.chain.push(newBlock)
   }
 
